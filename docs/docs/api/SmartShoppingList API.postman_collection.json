@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "426e9c75-5eb9-42b8-bdfb-575a872b14df",
+		"name": "SmartShoppingList API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50666647",
+		"_collection_link": "https://rumans555one-8117111.postman.co/workspace/5be448c6-f19e-4528-8a1d-0873602af67a/collection/50666647-426e9c75-5eb9-42b8-bdfb-575a872b14df?action=share&source=collection_link&creator=50666647"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "POST Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Статус 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "POST Login",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"123456\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"token\": \"mock-jwt-token-123456\",\n  \"user_id\": 1\n}\n"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tasks Management",
+			"item": [
+				{
+					"name": "GET All Tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Статус 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Более простой тест, без проверки длины",
+									"pm.test(\"Ответ пришёл (строка)\", function () {",
+									"    const body = pm.response.text();",
+									"    pm.expect(body).to.be.a(\"string\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "GET All Tasks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET All Tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Купить хлеб\",\n    \"quantity\": 1,\n    \"unit\": \"шт\",\n    \"is_purchased\": false\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Молоко\",\n    \"quantity\": 2,\n    \"unit\": \"л\",\n    \"is_purchased\": true\n  }\n]\n"
+						}
+					]
+				},
+				{
+					"name": "POST Create Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Создание прошло успешно\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "POST Create Task",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Купить молоко\",\n  \"quantity\": 2,\n  \"unit\": \"л\",\n  \"category\": \"Молочное\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST Create Task",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 3,\n  \"name\": \"Яблоки\",\n  \"quantity\": 5,\n  \"unit\": \"шт\",\n  \"is_purchased\": false\n}\n"
+						}
+					]
+				},
+				{
+					"name": "PUT Update Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Обновление прошло успешно\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "PUT Update Task",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Купить молоко\",\n  \"quantity\": 3,\n  \"unit\": \"л\",\n  \"is_purchased\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT Update Task",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n  \"id\": 1,\n  \"name\": \"Хлеб\",\n  \"quantity\": 2,\n  \"unit\": \"шт\",\n  \"is_purchased\": true\n}\n"
+						}
+					]
+				},
+				{
+					"name": "DELETE Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Удаление прошло успешно\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "DELETE Task",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE Task",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "GET All Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Статус 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Ответ пришёл (строка)\", function () {",
+									"    const body = pm.response.text();",
+									"    pm.expect(body).to.be.a(\"string\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+							"protocol": "https",
+							"host": [
+								"dbf18990-cb37-485c-992b-9fde7dec8540",
+								"mock",
+								"pstmn",
+								"io"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET All Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Бакалея\",\n        \"description\": \"Продукты длительного хранения\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Овощи\",\n        \"description\": \"Свежие овощи\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "POST Create Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Категория создана\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "POST Create Category",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}\n",
+							"host": [
+								"{{base_url}}\n"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST Create Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io",
+									"protocol": "https",
+									"host": [
+										"dbf18990-cb37-485c-992b-9fde7dec8540",
+										"mock",
+										"pstmn",
+										"io"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n  \"id\": 3,\n  \"name\": \"Фрукты\",\n  \"description\": \"Свежие фрукты\"\n}\n"
+						}
+					]
+				}
+			]
+		}
+	]
+}

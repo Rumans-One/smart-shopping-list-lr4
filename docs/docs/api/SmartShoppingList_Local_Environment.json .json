@@ -1,0 +1,21 @@
+{
+	"id": "3d77f54c-bdc3-4b32-90f5-561536ad5bca",
+	"name": "SmartShoppingList Local",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://9fc337e3-68c5-43db-ad55-fd904b071577.mock.pstmn.io",
+			"type": "text",
+			"enabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-12-09T13:54:11.786Z",
+	"_postman_exported_using": "Postman/11.66.3"
+}
