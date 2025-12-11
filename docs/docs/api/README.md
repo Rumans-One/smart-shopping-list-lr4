@@ -4,6 +4,16 @@ Mock Server URL
 
 `https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io`
 
+SmartShoppingList API
+
+Документация к учебному API для приложения **«Умный список покупок»**, используемому в ЛР6.
+
+Базовый URL (Mock server)
+
+Все примеры ниже используют Postman Mock Server.
+
+{{base_url}} = https://dbf18990-cb37-485c-992b-9fde7dec8540.mock.pstmn.io
+
 Переменная окружения в Postman:
 
 - `base_url` = этот URL
